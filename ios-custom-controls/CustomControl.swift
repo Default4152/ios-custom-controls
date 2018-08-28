@@ -22,23 +22,23 @@ class CustomControl: UIControl {
   private let componentInactiveColor = UIColor.gray
   
   func setup() {
-    let labels = [UILabel(frame: CGRect(x: 0,
+    let labels = [UILabel(frame: CGRect(x: 0.0,
                                         y: 0,
                                         width: componentDimension,
                                         height: componentDimension)),
-                  UILabel(frame: CGRect(x: 27.0,
+                  UILabel(frame: CGRect(x: 48.0,
                                         y: 0,
                                         width: componentDimension,
                                         height: componentDimension)),
-                  UILabel(frame: CGRect(x: 55.0,
+                  UILabel(frame: CGRect(x: 96.0,
                                         y: 0,
                                         width: componentDimension,
                                         height: componentDimension)),
-                  UILabel(frame: CGRect(x: 83.0,
+                  UILabel(frame: CGRect(x: 144.0,
                                         y: 0,
                                         width: componentDimension,
                                         height: componentDimension)),
-                  UILabel(frame: CGRect(x: 111.0,
+                  UILabel(frame: CGRect(x: 192.0,
                                         y: 0,
                                         width: componentDimension,
                                         height: componentDimension))]
@@ -53,6 +53,8 @@ class CustomControl: UIControl {
       } else {
         label.textColor = componentInactiveColor
       }
+      
+      label.textAlignment = .right
       
       self.addSubview(label)
     }

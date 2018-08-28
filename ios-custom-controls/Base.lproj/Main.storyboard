@@ -20,7 +20,6 @@
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZlA-ZN-9Df" customClass="CustomControl" customModule="ios_custom_controls" customModuleProvider="target">
                                 <rect key="frame" x="67" y="235" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.47245536430000001" green="1" blue="0.53197581540000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="24b-r4-IXd"/>
                                 </connections>
