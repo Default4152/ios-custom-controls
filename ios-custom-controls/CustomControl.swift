@@ -18,7 +18,7 @@ class CustomControl: UIControl {
 
   private let componentDimension: CGFloat = 40.0
   private let componentCount = 5
-  private let componentActiveColor = UIColor.black
+  private let componentActiveColor = UIColor(red: 0.94, green: 0.88, blue: 0.19, alpha: 1.0)
   private let componentInactiveColor = UIColor.gray
   private var labels: [UILabel] = []
 
@@ -103,12 +103,13 @@ class CustomControl: UIControl {
 
 extension UILabel {
   func performFlare() {
-
     func flare() { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
     func unflare() { transform = .identity }
 
     UIView.animate(withDuration: 0.75,
-      animations: { flare() },
+      animations: {
+        flare()
+      },
       completion: { _ in UIView.animate(withDuration: 1) { unflare() } })
 
     self.layer.removeAllAnimations()

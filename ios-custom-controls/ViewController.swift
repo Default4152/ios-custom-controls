@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
   @IBAction func updateRating(_ ratingControl: CustomControl) {
     if ratingControl.value == 0 {
       title = "User Rating: \(ratingControl.value+1) star"
