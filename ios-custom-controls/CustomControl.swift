@@ -20,30 +20,14 @@ class CustomControl: UIControl {
   private let componentCount = 5
   private let componentActiveColor = UIColor.black
   private let componentInactiveColor = UIColor.gray
+  private var labels: [UILabel] = []
   
   func setup() {
-    let labels = [UILabel(frame: CGRect(x: 0.0,
+    for i in 0..<componentCount {
+      let label = UILabel(frame: CGRect(x: (componentDimension + 8) * CGFloat(i),
                                         y: 0,
                                         width: componentDimension,
-                                        height: componentDimension)),
-                  UILabel(frame: CGRect(x: 48.0,
-                                        y: 0,
-                                        width: componentDimension,
-                                        height: componentDimension)),
-                  UILabel(frame: CGRect(x: 96.0,
-                                        y: 0,
-                                        width: componentDimension,
-                                        height: componentDimension)),
-                  UILabel(frame: CGRect(x: 144.0,
-                                        y: 0,
-                                        width: componentDimension,
-                                        height: componentDimension)),
-                  UILabel(frame: CGRect(x: 192.0,
-                                        y: 0,
-                                        width: componentDimension,
-                                        height: componentDimension))]
-    
-    for (i, label) in labels.enumerated() {
+                                        height: componentDimension))
       label.text = "★"
       label.tag = i
       label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
@@ -54,9 +38,10 @@ class CustomControl: UIControl {
         label.textColor = componentInactiveColor
       }
       
-      label.textAlignment = .right
+      label.textAlignment = .center
       
       self.addSubview(label)
+      labels.append(label)
     }
   }
   
