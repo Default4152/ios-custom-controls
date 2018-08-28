@@ -6,4 +6,8 @@
 //  Copyright © 2018 Conner. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CustomControl: UIControl {
+  var value: Int = 1
+}
