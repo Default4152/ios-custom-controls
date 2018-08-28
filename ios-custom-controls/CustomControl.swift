@@ -53,16 +53,19 @@ class CustomControl: UIControl {
   }
   
   func updateValue(at touch: UITouch) {
-    let labels = self.subviews.compactMap { $0 as? UILabel }
-    
-    for label in labels {
-      print(label)
-      print(touch)
+    let touchPoint = touch.location(in: self)
+    for (i, _) in labels.enumerated() {
+      if touchPoint.x >= labels[i].frame.minX {
+        value = i + 1
+        labels[i].textColor = componentActiveColor
+        sendActions(for: .valueChanged)
+      } else {
+        labels[i].textColor = componentInactiveColor
+      }
     }
   }
   
   override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-    let touchPoint = touch.location(in: self)
     updateValue(at: touch)
     return true
   }
@@ -75,7 +78,6 @@ class CustomControl: UIControl {
     } else {
       sendActions(for: .touchDragOutside)
     }
-    
     return true
   }
   
@@ -94,4 +96,16 @@ class CustomControl: UIControl {
     sendActions(for: .touchCancel)
   }
   
+}
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
