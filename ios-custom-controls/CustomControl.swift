@@ -10,4 +10,5 @@ import UIKit
 
 class CustomControl: UIControl {
   var value: Int = 1
+  private let componentDimension: CGFloat = 40.0
 }
