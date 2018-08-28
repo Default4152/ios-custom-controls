@@ -20,7 +20,7 @@ class CustomControl: UIControl {
   private let componentCount = 5
   private let componentActiveColor = UIColor.black
   private let componentInactiveColor = UIColor.gray
-  private var labels: [UILabel] = []
+  var labels: [UILabel] = []
   
   func setup() {
     for i in 0..<componentCount {
@@ -56,13 +56,21 @@ class CustomControl: UIControl {
     let touchPoint = touch.location(in: self)
     for (i, _) in labels.enumerated() {
       if touchPoint.x >= labels[i].frame.minX {
-        value = i + 1
         labels[i].textColor = componentActiveColor
-        sendActions(for: .valueChanged)
+        
+        if value == i {
+          continue
+        } else {
+          value = i
+          sendActions(for: .valueChanged)
+        }
+        
       } else {
         labels[i].textColor = componentInactiveColor
       }
     }
+    
+    labels[value].performFlare()
   }
   
   override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -95,17 +103,18 @@ class CustomControl: UIControl {
   override func cancelTracking(with event: UIEvent?) {
     sendActions(for: .touchCancel)
   }
-  
 }
 
-extension UIView {
-  // "Flare view" animation sequence
+extension UILabel {
   func performFlare() {
+    
     func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
     func unflare() { transform = .identity }
-    
-    UIView.animate(withDuration: 0.3,
+
+    UIView.animate(withDuration: 0.75,
                    animations: { flare() },
-                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+                   completion: { _ in UIView.animate(withDuration: 1) { unflare() }})
+    
+    self.layer.removeAllAnimations()
   }
 }
